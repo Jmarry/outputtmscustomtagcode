@@ -1,0 +1,19 @@
+*{margin: 0;padding: 0;}
+body{font: 12px/1.5em "microsoft yahei";}
+header#header{height: 92px;border-bottom: 3px solid #c40000;}
+header#header .headerLayout,#content .bodyLayout{width: 990px;margin: 0 auto;}
+header#header .headerLayout #mallLogo{background: url(http://gtms01.alicdn.com/tps/i1/T1n50CFp8bXXa18n.Q-439-220.png) no-repeat -249px -186px;height: 28px;width: 190px;margin-top: 28px;float: left;}
+header#header .headerLayout .navText{color: #c40000;border: 2px solid #c40000;border-radius: 4px;display: inline-block;padding: 3px 5px;margin-top: 29px;margin-left: 10px;font-weight: bold;font-family: Tahoma;}
+#content{padding-top: 20px;}
+#content .mui-tab-content{position: relative;}
+#content .mui-tab-content .mui-tab-panel{padding: 10px 0;}
+#content .mui-tab-content .mui-tab-panel .fieldsType{margin-right: 5px;}
+#content .mui-tab-content .mui-tab-panel .fieldsType.current{background: #c40000;color: #ffffff;}
+
+.showRow{margin: 5px 0;}
+.showRow .cli-lab{background: #0f49b2;padding: 2px 4px;border-radius: 5px;color: #fff;}
+
+.fieldsPanel{margin-top: 10px}
+.fieldsPanel .fieldsPanel-box{position: relative;display: inline-block;border: 1px solid #c40000;border-radius: 2px;background: #fff;box-shadow: 1px 1px 1px #ccc;padding: 20px 20px 10px;}
+.fieldsPanel .fieldsPanel-box .cli-fields-keys{padding: 4px 8px; border: 1px solid #999; border-radius: 5px;margin-right: 5px;display: inline-block;margin-bottom: 10px;}
+.fieldsPanel .fieldsPanel-box .cli-fields-keys:hover,.fieldsPanel .fieldsPanel-box .cli-fields-keys.current{background: #c40000;color: #fff;cursor: pointer;}

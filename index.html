@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TMSCustom标签生成器</title>
+    <link rel="stylesheet" href="http://g.tbcdn.cn/mui??/tab/1.0.2/tab.css,/form/1.0.2/form.css,table/1.0.0/table.css,button/1.0.6/btn.css,msg/1.0.3/msg.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/index.css"/>
+    <script src="js/angular-min.js"></script>
+</head>
+<body ng-app="myApp">
+<header id="header">
+    <div class="headerLayout">
+        <div id="mallLogo"></div>
+        <div class="navText">Custom字段生成器</div>
+    </div>
+</header>
+<div id="content">
+    <div class="bodyLayout">
+        <ul class="mui-tab-os-l" ng-controller="tabCtrl">
+            <li class="mui-tab-option"
+                ng-repeat="item in tabs"
+                ng-class="{'mui-tab-cur':$index===currentIndex}"
+                ng-click="tabClick($index);">
+                <a href="{{item.href}}" class="mui-tab-name">{{item.name}}</a>
+            </li>
+        </ul>
+        <div class="mui-tab-content">
+            <div class="mui-tab-panel">
+                <table class="mui-table">
+                    <colgroup>
+                        <col width="20%">
+                        <col width="80%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>字段名称</th>
+                        <th>内容</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><label class="mui-form-label" for="customName">标签名称(Name)</label></td>
+                        <td>
+                            <input class="mui-form-text" id="customName" type="text"
+                                   ng-model="name" ng-init="name='名称'">
+                            <span class="mui-form-tip">Name值可自动生成</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="mui-form-label" for="customGroup"><em class="mui-form-req">*</em>标签分组(Group)</label></td>
+                        <td>
+                            <input class="mui-form-text" id="customGroup" type="text"
+                                   ng-model="group"
+                                   ng-init="group='分组'"
+                                   required/>
+                            <div class="mui-form-valid" ng-show="!group">
+                                <div class="mui-msg mui-msg-red mui-form-msg">
+                                    <div class="mui-msg-con mui-msg-error">group不能为空<s class="mui-msg-icon"></s>
+                                    </div>
+                                    <s class="mui-msg-arrow mui-msg-arrow-top"></s>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="mui-form-label" for="customTitle"><em class="mui-form-req">*</em>标签标题(Title)</label></td>
+                        <td>
+                            <select class="mui-form-select" id="tagType"
+                                    ng-model="tagType"
+                                    ng-init="tagTypes=[{'name':'综合'},{'name':'店铺'},{'name':'商品'},{'name':'其他'}]"
+                                    ng-options="tag.name for tag in tagTypes">
+                                <option value="">-- 标签类型 --</option>
+                            </select>
+                            <input class="mui-form-text" id="customTitle" type="text"
+                                   ng-model="title"
+                                   ng-init="title='标题'"/>
+                            <span class="mui-form-tip">选择一个类别可以让后台直接对接对应数据</span>
+                            <div class="mui-form-valid" ng-show="!title">
+                                <div class="mui-msg mui-msg-red mui-form-msg">
+                                    <div class="mui-msg-con mui-msg-error">title不能为空<s class="mui-msg-icon"></s>
+                                    </div>
+                                    <s class="mui-msg-arrow mui-msg-arrow-top"></s>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="mui-form-label"><em class="mui-form-req">*</em>标签字段(Fields)</label>
+                        </td>
+                        <td ng-controller="customFieldsListCtrl">
+                            <span class="fieldsType mui-btn-m"
+                                  ng-init="fieldsStrs=[]"
+                                  ng-class="{current:$index===selectIndex}"
+                                  ng-click="showFieldsKeys($index);"
+                                  ng-repeat="item in data">{{item.name}}</span>
+                            <div class="fieldsPanel" ng-show="fields">
+                                <div class="fieldsPanel-box">
+                                    <div class="fieldsPanel-layout">
+                                        <span class="cli-fields-keys"
+                                              ng-repeat="sub in fields"
+                                              ng-class="{current:sub.checked}"
+                                              ng-click="checkField(sub.checked);">{{sub.name}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="mui-form-label"><em class="mui-form-req">*</em>标签字段校验(valid)</label>
+                        </td>
+                        <td ng-controller="fieldsValidCtrl">
+                            <div class="showRow" ng-repeat="(key,currentValid) in currentValidList">
+                                <span class="cli-lab">{{currentValid.field.name}}</span>-<span class="cli-lab">{{currentValid.valid.name}}</span>-<span class="cli-lab">{{currentValid.val}}</span>
+                                <input class="mui-btn-s-primary" type="button" value="删除"
+                                        ng-click="delValid(key);"/>
+                            </div>
+                            <div class="editRow">
+                                <select class="mui-form-select"
+                                        ng-model="fieldsModel"
+                                        ng-change="fieldsChange(fieldsModel);"
+                                        ng-options="field.name for field in fieldsList">
+                                    <option value="">-- 字段名称 --</option>
+                                        </select>
+                                <select class="mui-form-select"
+                                        ng-model="validsModel"
+                                        ng-options="valid.name for valid in validList">
+                                    <option value="">-- 校验类型 --</option>
+                                        </select>
+                                <input type="text" class="mui-form-text"
+                                       ng-model="fieldVal"/>
+                                <input class="mui-btn-m" type="button" ng-click="addValid(fieldsModel,validsModel,fieldVal);" value="添加"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="mui-form-label" for="customRow"><em class="mui-form-req">*</em>循环个数最大值(Row)</label></td>
+                        <td>
+                            <input class="mui-form-text" id="customRow" type="number"
+                                   min="1"
+                                   required
+                                   ng-model="row"
+                                   ng-init="row=1"/>
+                            <div class="mui-form-valid" ng-show="!row">
+                                <div class="mui-msg mui-msg-red mui-form-msg">
+                                    <div class="mui-msg-con mui-msg-error">row不能为空和非数字格式<s class="mui-msg-icon"></s>
+                                    </div>
+                                    <s class="mui-msg-arrow mui-msg-arrow-top"></s>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="mui-form-label" for="customDefaultRow"><em class="mui-form-req">*</em>初始化个数(DefaultRow)</label></td>
+                        <td>
+                            <input class="mui-form-text" id="customDefaultRow" type="number" min="1"
+                                   required
+                                   ng-model="defaultRow"
+                                   ng-init="defaultRow=1"/>
+                            <div class="mui-form-valid" ng-show="!defaultRow">
+                                <div class="mui-msg mui-msg-red mui-form-msg">
+                                    <div class="mui-msg-con mui-msg-error">defaultRow不能为空和非数字格式<s class="mui-msg-icon"></s>
+                                    </div>
+                                    <s class="mui-msg-arrow mui-msg-arrow-top"></s>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td><label class="mui-form-label" for="showCustomCode">生成代码</label>{{tagType.name}}</td>
+                        <th><textarea id="showCustomCode" style="width: 100%;height: 100px; border: 1px solid #999;margin-top: 10px;">_tms_custom('{"name":"{{name}}","group":"{{group}}","title":"{{tagType.name?'【'+tagType.name+'】':''}}{{title}}","fields":"{{fieldsStrs.join(',')}}","row":"{{row}}","defaultRow":"{{defaultRow}}"}','{{ValidStr}}');</textarea></th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>

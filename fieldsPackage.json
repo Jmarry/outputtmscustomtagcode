@@ -1,0 +1,267 @@
+{
+    "name": "前后端约定字段集合",
+    "version": "1.0.0",
+    "modules": [
+        {
+            "name": "基本类型",
+            "fields": [
+                {
+                    "code": "linkUrl",
+                    "name": "链接地址",
+                    "type": "href"
+                },
+                {
+                    "code": "title",
+                    "name": "标题",
+                    "type": "string"
+                },
+                {
+                    "code": "imgUrl",
+                    "name": "图片",
+                    "type": "img"
+                }
+            ]
+        },
+        {
+            "name": "Banner类型",
+            "fields": [
+                {
+                    "code": "linkUrl",
+                    "name": "链接地址",
+                    "type": "href"
+                },
+                {
+                    "code": "title",
+                    "name": "标题",
+                    "type": "string"
+                },
+                {
+                    "code": "imgUrl",
+                    "name": "图片",
+                    "type": "img"
+                },
+                {
+                    "code": "imgUrlMobile",
+                    "name": "无线图片地址",
+                    "type": "img"
+                }
+            ]
+        },
+        {
+            "name": "店铺类型",
+            "fields": [
+                {
+                    "code": "sellerId",
+                    "name": "店铺ID",
+                    "type": "string"
+                },
+                {
+                    "code": "shopName",
+                    "name": "店铺名称",
+                    "type": "string"
+                },
+                {
+                    "code": "imgUrlLogo",
+                    "name": "品牌logo",
+                    "type": "img"
+                },
+                {
+                    "code": "desc",
+                    "name": "利益点",
+                    "type": "string"
+                },
+                {
+                    "code": "imgUrl",
+                    "name": "店铺入口图",
+                    "type": "img"
+                },
+                {
+                    "code": "linkUrlShop",
+                    "name": "店铺首页链接地址",
+                    "type": "href"
+                },
+                {
+                    "code": "linkUrlShop",
+                    "name": "店铺承接页地址",
+                    "type": "href"
+                },
+                {
+                    "code": "shopAliAmt",
+                    "name": "店铺活动销量",
+                    "type": "string"
+                },
+                {
+                    "code": "shopCartUV",
+                    "name": "加入购物车人数",
+                    "type": "string"
+                },
+                {
+                    "code": "shopFavorites",
+                    "name": "加入收藏人数",
+                    "type": "string"
+                },
+                {
+                    "code": "shopCouponNmb",
+                    "name": "领取优惠劵人数",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "商品类型",
+            "fields": [
+                {
+                    "code": "itemId",
+                    "name": "商品ID",
+                    "type": "string"
+                },
+                {
+                    "code": "sellerId",
+                    "name": "商家ID",
+                    "type": "string"
+                },
+                {
+                    "code": "linkUrlItem",
+                    "name": "商品详情链接地址",
+                    "type": "href"
+                },
+                {
+                    "code": "title",
+                    "name": "标题",
+                    "type": "string"
+                },
+                {
+                    "code": "imgUrl",
+                    "name": "商品图片",
+                    "type": "img"
+                },
+                {
+                    "code": "imgUrlLogo",
+                    "name": "品牌logo图",
+                    "type": "img"
+                },
+                {
+                    "code": "brandTitle",
+                    "name": "品牌名称",
+                    "type": "string"
+                },
+                {
+                    "code": "brandId",
+                    "name": "品牌ID",
+                    "type": "string"
+                },
+                {
+                    "code": "couponValue",
+                    "name": "优惠券面值(数字)",
+                    "type": "string"
+                },
+                {
+                    "code": "couponId",
+                    "name": "优惠券ID",
+                    "type": "string"
+                },
+                {
+                    "code": "linkUrlCoupon",
+                    "name": "优惠券地址",
+                    "type": "href"
+                },
+                {
+                    "code": "tagPrice",
+                    "name": "专柜价",
+                    "type": "string"
+                },
+                {
+                    "code": "activeSalePrice",
+                    "name": "活动价",
+                    "type": "string"
+                },
+                {
+                    "code": "activePriceTitle",
+                    "name": "活动价标题",
+                    "type": "string"
+                },
+                {
+                    "code": "discountPercent",
+                    "name": "折扣",
+                    "type": "string"
+                },
+                {
+                    "code": "discountPrice",
+                    "name": "降价",
+                    "type": "string"
+                },
+                {
+                    "code": "itemAliAmt",
+                    "name": "商品销量",
+                    "type": "string"
+                },
+                {
+                    "code": "itemCartUV",
+                    "name": "加入购物车人数",
+                    "type": "string"
+                },
+                {
+                    "code": "itemFavorites",
+                    "name": "加入收藏人数",
+                    "type": "string"
+                },
+                {
+                    "code": "itemExposure",
+                    "name": "浏览人数",
+                    "type": "string"
+                },
+                {
+                    "code": "zanNmb",
+                    "name": "好评数",
+                    "type": "string"
+                },
+                {
+                    "code": "shopAliAmt",
+                    "name": "店铺销量",
+                    "type": "string"
+                },
+                {
+                    "code": "shopName",
+                    "name": "店铺名称",
+                    "type": "string"
+                },
+                {
+                    "code": "linkUrlShop",
+                    "name": "店铺首页链接地址",
+                    "type": "href"
+                },
+                {
+                    "code": "linkUrlShop",
+                    "name": "店铺承接页地址",
+                    "type": "href"
+                }
+            ]
+        }
+    ],
+    "valid": [
+        {
+            "name": "最大字数限制",
+            "code": "maxLength"
+        },
+        {
+            "name": "最小字数限制",
+            "code": "minLength"
+        },
+        {
+            "name":"PSD下载链接",
+            "code":"linkUrlPsd"
+        },
+        {
+            "name": "效果预览图链接",
+            "code": "linkUrlPreview"
+        },
+        {
+            "name": "图片宽度尺寸",
+            "code": "imgWidth"
+        },
+        {
+            "name": "图片高度尺寸",
+            "code": "imgHeight"
+        }
+    ]
+}
